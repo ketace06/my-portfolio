@@ -7,16 +7,41 @@
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 id="title">Hello World, I'm Ismail!</h1>
-            <p class="subtitle">I'm a Web Developer and Designer</p>
-            <div class="social-links">
-                <a href="#" class="social-icon">LinkedIn</a>
-                <a href="#" class="social-icon">GitHub</a>
-            </div>
-        </div>
-    </header>
+
+    <!-- Intro Section -->
+    <div class="intro">
+        <h1 class="logo-header">
+            <span class="logo">Hello</span><span class="logo">World!</span>
+        </h1>
+    </div>
+
+    <!-- Content Section after intro -->
+    <div class="content">
+        <section class="about">
+            <h2>About Me</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+        </section>
+
+        <section class="skills">
+            <h2>Skills</h2>
+            <p>Some skill description goes here...</p>
+        </section>
+
+        <section class="projects">
+            <h2>Projects</h2>
+            <p>Some project description goes here...</p>
+        </section>
+
+        <section class="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" name="name" placeholder="Your Name" required />
+                <input type="email" name="email" placeholder="Your Email" required />
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
 
     <script src="src/script.js"></script>
 </body>
