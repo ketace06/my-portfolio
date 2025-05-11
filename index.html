@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/style.css" />
 </head>
 <body>
-
-    <!-- Intro Section -->
     <div class="intro">
-        <h1 class="logo-header">
+        <div class="overlay-slide"></div>
+        <h1 class="logoheader">
             <span class="logo">Hello</span><span class="logo">World!</span>
         </h1>
     </div>
 
-    <!-- Content Section after intro -->
-    <div class="content">
+    <main class="content">
         <section class="about">
             <h2>About Me</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.</p>
+            <p class="hover-effect">Aspiring IT specialist, mastering code today to shape the technology of tomorrow</p>
         </section>
 
         <section class="skills">
             <h2>Skills</h2>
-            <p>Some skill description goes here...</p>
+            <div class="skill-icons">
+                <img src="assets/skill1.png" alt="Skill 1" class="skill-icon" />
+                <img src="assets/skill2.png" alt="Skill 2" class="skill-icon" />
+                <img src="assets/skill3.png" alt="Skill 3" class="skill-icon" />
+            </div>
         </section>
 
         <section class="projects">
             <h2>Projects</h2>
-            <p>Some project description goes here...</p>
+            <div class="project-gallery">
+                <img src="assets/project1.jpg" alt="Project 1" data-text="Description 1" class="project-image" />
+                <img src="assets/project2.jpg" alt="Project 2" data-text="Description 2" class="project-image" />
+            </div>
         </section>
 
         <section class="contact">
-            <h2>Contact Me</h2>
+            <h2>Contact</h2>
             <form>
-                <input type="text" name="name" placeholder="Your Name" required />
-                <input type="email" name="email" placeholder="Your Email" required />
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
+                <input type="text" name="name" placeholder="Your Name" required autocomplete="off"/>
+                <input type="email" name="email" placeholder="Your Email" required autocomplete="off"/>
+                <textarea name="message" placeholder="Your Message" required autocomplete="off"></textarea>
+                <button type="submit" class="animated-button">Send</button>
             </form>
         </section>
-    </div>
+    </main>
 
     <script src="src/script.js"></script>
 </body>
