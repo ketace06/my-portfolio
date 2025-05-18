@@ -16,4 +16,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: C:\Users\Ismail\Documents\Travail\Portfolio
+          publish_dir: ./my-portfolio
