@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import "./style.css";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="intro">
+        <div className="overlay-slide"></div>
+        <h1 className="logoheader">
+          <span className="logo">Hello</span>
+          <span className="logo">World!</span>
+        </h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
+      <main className="content">
+        <section className="about">
+          <h2>About Me</h2>
+          <p className="hover-effect">
+            Aspiring IT specialist, mastering code today to shape the technology
+            of tomorrow
+          </p>
+        </section>
+
+        <section className="skills">
+          <h2>Skills</h2>
+          <div className="skill-icons">
+            <img src="assets/skill1.png" alt="Skill 1" className="skill-icon" />
+            <img src="assets/skill2.png" alt="Skill 2" className="skill-icon" />
+            <img src="assets/skill3.png" alt="Skill 3" className="skill-icon" />
+          </div>
+        </section>
+
+        <section className="projects">
+          <h2>Projects</h2>
+          <div className="project-gallery">
+            <img
+              src="assets/project1.jpg"
+              alt="Project 1"
+              data-text="Description 1"
+              className="project-image"
+            />
+            <img
+              src="assets/project2.jpg"
+              alt="Project 2"
+              data-text="Description 2"
+              className="project-image"
+            />
+          </div>
+        </section>
+
+        <section className="contact">
+          <h2>Contact</h2>
+          <form>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              autoComplete="off"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              autoComplete="off"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              required
+              autoComplete="off"
+            ></textarea>
+            <button type="submit" className="animated-button">
+              Send
+            </button>
+          </form>
+        </section>
+      </main>
+    </>
+  );
+};
+
+export default App;
