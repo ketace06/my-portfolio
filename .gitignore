@@ -1,13 +1,46 @@
-# Local
-.DS_Store
-*.local
-*.log*
+# Node.js dependencies
+node_modules/
 
-# Dist
-node_modules
+# Build output
 dist/
 
-# IDE
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Lock files (optionnel, à versionner si tu veux)
+pnpm-lock.yaml
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# TypeScript cache files
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# macOS files
+.DS_Store
+
+# Optional: coverage reports
+coverage/
+
+# Optional: test output
+test-results/
+
+# Optional: npm cache
+.npm/
+
+# Optional: temporary files
+tmp/
+temp/
