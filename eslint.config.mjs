@@ -1,53 +1,31 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import json from "@eslint/json";
-import markdown from "@eslint/markdown";
-import css from "@eslint/css";
-import { defineConfig } from "eslint/config";
+import { fixupConfigRules } from '@eslint/compat';
+import js from '@eslint/js';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactJsx from 'eslint-plugin-react/configs/jsx-runtime.js';
+import react from 'eslint-plugin-react/configs/recommended.js';
+import globals from 'globals';
+import ts from 'typescript-eslint';
 
-export default defineConfig([
+export default [
+  { languageOptions: { globals: globals.browser } },
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  ...fixupConfigRules([
+    {
+      ...react,
+      settings: {
+        react: { version: 'detect' },
+      },
+    },
+    reactJsx,
+  ]),
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    plugins: {
+      'react-hooks': reactHooks,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+    },
   },
-  { files: ["**/*.js"], languageOptions: { sourceType: "script" } },
-  {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
-  },
-  tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  {
-    files: ["**/*.json"],
-    plugins: { json },
-    language: "json/json",
-    extends: ["json/recommended"],
-  },
-  {
-    files: ["**/*.jsonc"],
-    plugins: { json },
-    language: "json/jsonc",
-    extends: ["json/recommended"],
-  },
-  {
-    files: ["**/*.json5"],
-    plugins: { json },
-    language: "json/json5",
-    extends: ["json/recommended"],
-  },
-  {
-    files: ["**/*.md"],
-    plugins: { markdown },
-    language: "markdown/commonmark",
-    extends: ["markdown/recommended"],
-  },
-  {
-    files: ["**/*.css"],
-    plugins: { css },
-    language: "css/css",
-    extends: ["css/recommended"],
-  },
-]);
+  { ignores: ['dist/'] },
+];
