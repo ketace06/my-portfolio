@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import IntroAnimation from './components/LogoAnimation';
+
 const App: React.FC = () => {
+  useEffect(() => {
+    document.title = 'My portfolio';
+  }, []);
+
   return (
     <>
       <IntroAnimation />

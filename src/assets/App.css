@@ -48,7 +48,7 @@ body {
   z-index: 10;
   font-size: 3rem;
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .logo {
