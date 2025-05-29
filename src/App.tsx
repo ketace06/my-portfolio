@@ -1,9 +1,10 @@
-import React from "react";
-import "./style.css";
-
+import React from 'react';
+import IntroAnimation from './components/LogoAnimation';
 const App: React.FC = () => {
   return (
     <>
+      <IntroAnimation />
+
       <div className="intro">
         <div className="overlay-slide"></div>
         <h1 className="logoheader">

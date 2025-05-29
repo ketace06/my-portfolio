@@ -1,11 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
+    "lib": ["DOM", "ES2020"],
     "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "target": "ES2020",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true,
+
+    /* modules */
+    "module": "ESNext",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+
+    /* type checking */
     "strict": true,
-    "skipLibCheck": true
-  }
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["src"]
 }
