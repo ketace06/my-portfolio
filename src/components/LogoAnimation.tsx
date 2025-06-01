@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 
 const IntroAnimation = () => {
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
     const intro = document.querySelector('.intro') as HTMLElement | null;
     const logoSpans = document.querySelectorAll<HTMLSpanElement>('.logo');
     const overlay = document.querySelector(
@@ -40,37 +42,13 @@ const IntroAnimation = () => {
         intro.style.opacity = '0';
       }
       content?.classList.add('visible');
+
+      document.body.style.overflow = '';
     }, 3100);
 
-    const projectImages =
-      document.querySelectorAll<HTMLImageElement>('.project-image');
-
-    projectImages.forEach((image) => {
-      const clickHandler = () => {
-        const description = image.getAttribute('data-text') || '';
-        const lightbox = document.createElement('div');
-        lightbox.classList.add('lightbox');
-        lightbox.innerHTML = `
-          <div class="lightbox-content">
-            <p>${description}</p>
-            <button class="close-lightbox">Close</button>
-          </div>
-        `;
-        document.body.appendChild(lightbox);
-
-        const closeBtn = lightbox.querySelector('.close-lightbox');
-        closeBtn?.addEventListener('click', () => {
-          document.body.removeChild(lightbox);
-        });
-      };
-
-      image.addEventListener('click', clickHandler);
-
-      // Cleanup on unmount
-      return () => {
-        image.removeEventListener('click', clickHandler);
-      };
-    });
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, []);
 
   return null;
