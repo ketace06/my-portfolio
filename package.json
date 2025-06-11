@@ -11,6 +11,10 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
@@ -28,5 +32,18 @@
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.0"
-  }
+  },
+  "description": "Welcome to my portfolio! As an IT apprentice specializing in application development, I'm currently honing my practical skills in this field. I'm actively working on real-world projects that are helping me to strengthen my mastery of programming, software design and good development practices.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketace06/my-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ketace06/my-portfolio/issues"
+  },
+  "homepage": "https://github.com/ketace06/my-portfolio#readme"
 }
