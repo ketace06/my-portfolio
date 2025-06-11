@@ -114,38 +114,6 @@ const ContentApp = () => {
           />
         </div>
       </section>
-      <section id="contact">
-        <h2>Contact</h2>
-        <form>
-          <label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-              autoComplete="off"
-            />
-          </label>
-          <label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-              autoComplete="off"
-            />
-          </label>
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            required
-            autoComplete="off"
-          ></textarea>
-          <button type="submit" className="animated-button">
-            Send
-          </button>
-        </form>
-      </section>
     </main>
   );
 };
