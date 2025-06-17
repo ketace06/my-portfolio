@@ -1,81 +1,80 @@
-import React, { useState } from 'react';
-
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
+import React, { useState } from "react";
 
 export const ContactForm = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState<string>("");
   const [isSending, setIsSending] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-  const canSendForm = () => {
-    const lastSent = localStorage.getItem('lastSent');
-    if (!lastSent) return true;
+  const form = e.currentTarget;
+  const formData = new FormData(form);
 
-    const lastSentTime = new Date(lastSent).getTime();
-    const now = Date.now();
-    const diff = now - lastSentTime;
+  const name = formData.get("name")?.toString().trim() || "";
+  const email = formData.get("email")?.toString().trim() || "";
+  const message = formData.get("message")?.toString().trim() || "";
 
-    return diff > 60000;
-  };
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const nameRegex = /^[a-zA-ZÀ-ÿ\s'-]{2,}$/; 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  if (!nameRegex.test(name)) {
+    setStatus("❌ Please enter a valid name (letters and spaces only, min 2 characters).");
+    return;
+  }
 
-    if (!canSendForm()) {
-      setStatus('⏳ Please wait at least 1 minute between submissions.');
-      return;
-    }
+  if (!emailRegex.test(email)) {
+    setStatus("❌ Please enter a valid email address.");
+    return;
+  }
 
-    setIsSending(true);
-    setStatus('Sending...');
+  if (message.length < 10) {
+    setStatus("❌ Please enter a message of at least 10 characters.");
+    return;
+  }
 
-    try {
-      const response = await fetch('http://localhost:4000/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+  const lastSent = localStorage.getItem("lastSent");
+  const now = Date.now();
 
+  if (lastSent && now - parseInt(lastSent) < 60000) {
+    setStatus("⏳ Please wait at least 1 minute between submissions.");
+    return;
+  }
+
+  setStatus("Sending...");
+  setIsSending(true);
+
+  fetch("https://formsubmit.co/ajax/ismail.omaramin06@gmail.com", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+    },
+    body: formData,
+  })
+    .then(async (response) => {
       if (response.ok) {
-        setStatus('✅ Message sent!');
-        setFormData({ name: '', email: '', message: '' });
-        localStorage.setItem('lastSent', new Date().toISOString());
+        setStatus("✅ Message sent! Thanks for contacting me.");
+        form.reset();
+        localStorage.setItem("lastSent", now.toString());
       } else {
-        setStatus('❌ Error while sending the form');
+        const data = await response.json();
+        setStatus("❌ Error: " + (data.message || "Unknown error"));
       }
-    } catch (error) {
-      setStatus('❌ An error occurred');
-    } finally {
-      setIsSending(false);
-    }
-  };
+    })
+    .catch(() => {
+      setStatus("❌ An error occurred while sending the message.");
+    })
+    .finally(() => setIsSending(false));
+};
 
   return (
     <section id="contact">
       <h2>Contact</h2>
-
       <form onSubmit={handleSubmit}>
         <label>
           <input
             type="text"
             name="name"
             placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
             required
             autoComplete="off"
             disabled={isSending}
@@ -86,8 +85,6 @@ export const ContactForm = () => {
             type="email"
             name="email"
             placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
             required
             autoComplete="off"
             disabled={isSending}
@@ -96,17 +93,20 @@ export const ContactForm = () => {
         <textarea
           name="message"
           placeholder="Your Message"
-          value={formData.message}
-          onChange={handleChange}
           required
           autoComplete="off"
           disabled={isSending}
         />
-        <button type="submit" className="animated-button" disabled={isSending}>
+        <input
+          type="hidden"
+          name="_subject"
+          value="New message via contact form from portfolio"
+        />
+        <button type="submit" disabled={isSending}>
           Send
         </button>
-        <p>{status}</p>
       </form>
+      {status && <p style={{ marginTop: "1em" }}>{status}</p>}
     </section>
   );
 };
