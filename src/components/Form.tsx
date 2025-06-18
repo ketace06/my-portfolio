@@ -100,13 +100,13 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         <input
           type="hidden"
           name="_subject"
-          value="New message via contact form from portfolio"
+          value="New message via contact from my portfolio"
         />
         <button type="submit" disabled={isSending}>
           Send
         </button>
       </form>
-      {status && <p style={{ marginTop: "1em" }}>{status}</p>}
+      {status && <p style={{ marginTop: "1rem" }}>{status}</p>}
     </section>
   );
 };
