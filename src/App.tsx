@@ -3,6 +3,7 @@ import Navbar from './components/NavBar';
 import Content from './components/Content';
 import FakeLogin from './components/FakeLoginIntro';
 import ContactForm from './components/Form';
+import NavbarDrawerMobile from './components/navbarDrawerMobile';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <ContactForm />
         </div>
       )}
+      <NavbarDrawerMobile />
     </>
   );
 };
