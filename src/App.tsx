@@ -16,13 +16,17 @@ const App: React.FC = () => {
     <>
       {!isLoggedIn && <FakeLogin onLogin={() => setIsLoggedIn(true)} />}
       {isLoggedIn && (
-        <div className="app">
+        <><div className="app">
           <Navbar />
           <Content />
           <ContactForm />
         </div>
+        <>
+        <NavbarDrawerMobile />
+        </>
+        </>
+
       )}
-      <NavbarDrawerMobile />
     </>
   );
 };
